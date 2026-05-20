@@ -1,0 +1,63 @@
+
+class Order {
+
+ 
+    void calculateBill(double price, int quantity) {
+        double total = price * quantity;
+        System.out.println("Normal Order Bill: " + total);
+    }
+
+   
+    void calculateBill(double price, int quantity, double discount) {
+        double total = price * quantity;
+        double finalAmount = total - (total * discount / 100);
+        System.out.println("Discounted Order Bill: " + finalAmount);
+    }
+
+   
+    void generateInvoice() {
+        System.out.println("Generating Domestic Invoice...");
+    }
+}
+
+
+class InternationalOrder extends Order {
+
+    
+    void generateInvoice() {
+        double price = 100;
+        int quantity = 2;
+
+        double baseAmount = price * quantity;
+        double shipping = 500;
+        double tax = 200;
+
+        double totalAmount = baseAmount + shipping + tax;
+
+        System.out.println("Generating International Invoice...");
+        System.out.println("Base Amount: " + baseAmount);
+        System.out.println("Shipping Charges: " + shipping);
+        System.out.println("Tax: " + tax);
+        System.out.println("Total International Bill: " + totalAmount);
+    }
+}
+
+
+public class BillWIthOrder {
+    public static void main(String[] args) {
+
+        System.out.println("--- BILL CALCULATION SECTION ---");
+
+        Order o1 = new Order();
+
+        o1.calculateBill(100, 2);
+        o1.calculateBill(100, 2, 10);
+
+
+        System.out.println("\n--- INVOICE GENERATION SECTION ---");
+
+        Order o2 = new InternationalOrder();
+
+        o2.generateInvoice();
+    }
+}
